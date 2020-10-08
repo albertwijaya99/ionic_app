@@ -1,0 +1,13 @@
+{
+  "appId": "io.ionic.starter",
+  "appName": "AlbertWijaya_00000021498_IF733_CL_UTS",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}
