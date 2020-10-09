@@ -27,8 +27,8 @@
                   <img src="{{product.imageUrl}}">
                 </ion-thumbnail>
                 {{product.model}}<br>
-                Rp. {{product.price}}<br>
-                Stock: {{product.stock}}
+                Rp. {{product.price.toLocaleString('id-ID')}}<br>
+                Stock: {{product.stock.toLocaleString('id-ID')}}
               </ion-item>
 
             <ion-item-options side="end">
