@@ -1,12 +1,81 @@
 <ion-header>
   <ion-toolbar>
     <ion-button slot="start" fill="">
-      <ion-back-button defaultHref="/products"></ion-back-button>
+      <ion-back-button defaultHref="/admin"></ion-back-button>
     </ion-button>
     <ion-title>Edit Product</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content class="ion-padding">
+ <form [formGroup]="form">
+   <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Image URL</ion-label>
+        <ion-input type="text" formControlName="imageUrl"></ion-input>
+      </ion-item>
+     <ion-item>
+       <ion-label position="stacked">Brand</ion-label>
+       <ion-input type="text" formControlName="brand"></ion-input>
+     </ion-item>
+     <ion-item>
+       <ion-label position="stacked">Model</ion-label>
+       <ion-input type="text" formControlName="model"></ion-input>
+     </ion-item>
+     <ion-item>
+       <ion-label position="stacked">Price</ion-label>
+       <ion-input type="number" formControlName="price">Rp.&nbsp;</ion-input>
+     </ion-item>
+     <ion-item>
+       <ion-label position="stacked">Stock</ion-label>
+       <ion-input type="number" formControlName="stock"></ion-input>
+     </ion-item>
+   </ion-list>
+   <h4 align="center">Product Detail</h4>
+   <ion-list *ngIf="loadedProduct.type === 'cpu'">
+     <ion-item>
+       <ion-label position="stacked">Base Clock (in GHz)</ion-label>
+       <ion-input type="number" formControlName="base_clock"></ion-input>
+     </ion-item>
+     <ion-item>
+       <ion-label position="stacked">Boost Clock (in GHz)</ion-label>
+       <ion-input type="number" formControlName="boost_clock"></ion-input>
+     </ion-item>
+     <ion-item>
+       <ion-label position="stacked">Core Count</ion-label>
+       <ion-input type="number" formControlName="core_count"></ion-input>
+     </ion-item>
+     <ion-item>
+       <ion-label position="stacked">Thread Count</ion-label>
+       <ion-input type="number" formControlName="thread_count"></ion-input>
+     </ion-item>
+   </ion-list>
+   <ion-list *ngIf="loadedProduct.type === 'ram'">
+     <ion-item>
+       <ion-label position="stacked">Speed (in MHz)</ion-label>
+       <ion-input type="number" formControlName="speed"></ion-input>
+     </ion-item>
+     <ion-item>
+       <ion-label position="stacked">Size (in GB)</ion-label>
+       <ion-input type="number" formControlName="size"></ion-input>
+     </ion-item>
+     <ion-item>
+       <ion-label position="stacked">Pieces (in GB)</ion-label>
+       <ion-input type="text" formControlName="pcs"></ion-input>
+     </ion-item>
+   </ion-list>
+   <ion-list *ngIf="loadedProduct.type === 'motherboard'">
+     <ion-item>
+       <ion-label position="stacked">Chipset</ion-label>
+       <ion-input type="text" formControlName="chipset"></ion-input>
+     </ion-item>
+     <ion-item>
+       <ion-label position="stacked">For CPU</ion-label>
+       <ion-input type="for_cpu_brand" formControlName="for_cpu_brand"></ion-input>
+     </ion-item>
+   </ion-list>
+   <ion-button type="submit" expand="block" (click)="onSave()" [disabled]="form.invalid">
+     Save
+   </ion-button>
+ </form>
 </ion-content>

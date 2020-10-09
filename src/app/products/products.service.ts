@@ -104,7 +104,15 @@ export class ProductsService {
 
   constructor() { }
   getAllProducts() {
-    return this.products;
+      const temp = [];
+      for (const products of this.products) {
+          for (const product of products) {
+              if (product.stock > 0) {
+                  temp.push(product);
+              }
+          }
+      }
+      return temp;
   }
   getProduct(id: string){
     const products = this.products.find(product => {
@@ -132,11 +140,111 @@ export class ProductsService {
       this.gpus = this.gpus.filter(product => {
           return product.id !== id;
       });
-      this.products = [
-          this.cpus,
-          this.rams,
-          this.motherboards,
-          this.gpus
-      ];
   }
+  addCpu(
+      id: string,
+      model: string,
+      brand: string,
+      imageUrl: string,
+      type: string,
+      price: number,
+      stock: number,
+      baseClock: number,
+      boostClock: number,
+      coreCount: number,
+      threadCount: number
+  ) {
+        this.cpus.push({
+            id,
+            model,
+            brand,
+            imageUrl,
+            type,
+            price,
+            stock,
+            base_clock: baseClock,
+            boost_clock: boostClock,
+            core_count: coreCount,
+            thread_count: threadCount
+        });
+        this.refreshProduct();
+    }
+    addRam(
+        id: string,
+        model: string,
+        brand: string,
+        imageUrl: string,
+        type: string,
+        price: number,
+        stock: number,
+        speed: number,
+        size: number,
+        pcs: string
+    ) {
+        this.rams.push({
+            id,
+            model,
+            brand,
+            imageUrl,
+            type,
+            price,
+            stock,
+            speed,
+            size,
+            pcs
+        });
+        this.refreshProduct();
+    }
+    addMotherboard(
+        id: string,
+        model: string,
+        brand: string,
+        imageUrl: string,
+        type: string,
+        price: number,
+        stock: number,
+        chipset: string,
+        forCpuBrand: string,
+    ) {
+        this.motherboards.push({
+            id,
+            model,
+            brand,
+            imageUrl,
+            type,
+            price,
+            stock,
+            chipset,
+            for_cpu_brand: forCpuBrand
+        });
+        this.refreshProduct();
+    }
+    addGpu(
+        id: string,
+        model: string,
+        brand: string,
+        imageUrl: string,
+        type: string,
+        price: number,
+        stock: number
+    ) {
+        this.gpus.push({
+            id,
+            model,
+            brand,
+            imageUrl,
+            type,
+            price,
+            stock
+        });
+        this.refreshProduct();
+    }
+    refreshProduct(){
+        this.products = [
+            this.cpus,
+            this.rams,
+            this.motherboards,
+            this.gpus
+        ];
+    }
 }

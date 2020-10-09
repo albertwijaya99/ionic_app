@@ -15,15 +15,7 @@ export class ProductsPage implements OnInit {
   ngOnInit() {
   }
   ionViewWillEnter() {
-    const temp = [];
-    for (const products of this.productService.getAllProducts()) {
-      for (const product of products) {
-        if (product.stock > 0) {
-          temp.push(product);
-        }
-      }
-    }
-    this.products = temp;
+    this.products = this.productService.getAllProducts();
   }
   changeToGrid() {
     document.getElementById('btnGrid').style.display = 'none';

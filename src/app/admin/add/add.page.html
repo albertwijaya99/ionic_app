@@ -1,12 +1,149 @@
 <ion-header>
   <ion-toolbar>
     <ion-button slot="start" fill="">
-      <ion-back-button defaultHref="/products"></ion-back-button>
+      <ion-back-button defaultHref="/admin"></ion-back-button>
     </ion-button>
     <ion-title>Add Product</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content class="ion-padding">
+  <form #form="ngForm" (ngSubmit)=" onSubmit(form)">
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Image URL</ion-label>
+        <ion-input name="imageUrl"
+                   ngModel
+                   placeholder="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"
+                   required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Type</ion-label>
+        <ion-select placeholder="Select one"
+                    ngModel
+                    name="type"
+                    (ionChange)="onChange($event)"
+                    required>
+          <ion-select-option value="cpu">CPU</ion-select-option>
+          <ion-select-option value="ram">RAM</ion-select-option>
+          <ion-select-option value="motherboard">Motherboard</ion-select-option>
+          <ion-select-option value="gpu">GPU</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Brand</ion-label>
+        <ion-input type="text"
+                   ngModel
+                   name="brand"
+                   placeholder="Intel / AMD"
+                   required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Model</ion-label>
+        <ion-input type="text"
+                   ngModel
+                   name="model"
+                   placeholder="Ryzen 5000"
+                   required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Price</ion-label>
+          <ion-input type="number"
+                     ngModel
+                     name="price"
+                     placeholder=123456
+                     required>Rp.&nbsp;</ion-input>
+        </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Stock</ion-label>
+        <ion-input type="number"
+                   ngModel
+                   name="stock"
+                   placeholder=50
+                   required></ion-input>
+      </ion-item>
+    </ion-list>
+    <h4 align="center">Product Detail</h4>
+    <ion-list *ngIf="this.type === 'cpu'">
+      <ion-item>
+        <ion-label position="stacked">Base Clock (in GHz)</ion-label>
+        <ion-input type="number"
+                   ngModel
+                   name="base_clock"
+                   placeholder=3.0
+                   required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Boost Clock (in GHz)</ion-label>
+        <ion-input type="number"
+                   ngModel
+                   name="boost_clock"
+                   placeholder=5.0
+                   required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Core Count</ion-label>
+        <ion-input type="number"
+                   ngModel
+                   name="core_count"
+                   placeholder=4
+                   required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Thread Count</ion-label>
+        <ion-input type="number"
+                   ngModel
+                   name="thread_count"
+                   placeholder=8
+                   required></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngIf="this.type === 'ram'">
+      <ion-item>
+        <ion-label position="stacked">Speed (in MHz)</ion-label>
+        <ion-input type="number"
+                   ngModel
+                   name="speed"
+                   placeholder=2666
+                   required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Size (in GB)</ion-label>
+        <ion-input type="number"
+                   ngModel
+                   name="size"
+                   placeholder=16
+                   required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Pieces (in GB)</ion-label>
+        <ion-input type="text"
+                   ngModel
+                   name="pcs"
+                   placeholder=2x8
+                   required></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngIf="this.type === 'motherboard'">
+      <ion-item>
+        <ion-label position="stacked">Chipset</ion-label>
+        <ion-input type="text"
+                   ngModel
+                   name="chipset"
+                   placeholder=AM4
+                   required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">For CPU</ion-label>
+        <ion-input type="text"
+                   ngModel
+                   name="for_cpu_brand"
+                   placeholder=Intel
+                   required></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-button type="submit" expand="block" [disabled]="form.invalid">
+      Submit
+    </ion-button>
+  </form>
 </ion-content>
