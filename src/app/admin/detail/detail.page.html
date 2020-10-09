@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button slot="start" fill="">
+      <ion-back-button defaultHref="/products"></ion-back-button>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item lines="none">
+      <ion-img [src]="loadedProduct.imageUrl"></ion-img>
+    </ion-item>
+    <ion-item class="ion-margin-top ion-margin-bottom">
+      {{loadedProduct.model}}<br>
+      Rp. {{loadedProduct.price.toLocaleString('id-ID')}}<br>
+      Stock: {{loadedProduct.stock.toLocaleString('id-ID')}}<br>
+    </ion-item>
+    <ion-item class="ion-margin-top ion-margin-bottom" *ngIf="loadedProduct.type === 'cpu'">
+      Brand: {{loadedProduct.brand}}<br>
+      Base Clock: {{loadedProduct.base_clock}} GHz<br>
+      Boost Clock: {{loadedProduct.boost_clock}} GHz<br>
+      Core Count: {{loadedProduct.core_count}}<br>
+      Thread Count: {{loadedProduct.thread_count}}
+    </ion-item>
+    <ion-item class="ion-margin-top ion-margin-bottom" *ngIf="loadedProduct.type === 'ram'">
+      Brand: {{loadedProduct.brand}}<br>
+      RAM Speed: {{loadedProduct.speed}} MHz<br>
+      RAM Size: {{loadedProduct.size}} GB<br>
+      Ram Piece: {{loadedProduct.pcs}} GB
+    </ion-item>
+    <ion-item class="ion-margin-top ion-margin-bottom" *ngIf="loadedProduct.type === 'motherboard'">
+      Brand: {{loadedProduct.brand}}<br>
+      Chipset: {{loadedProduct.chipset}}<br>
+      For Processor: {{loadedProduct.for_cpu_brand}}<br>
+    </ion-item>
+    <ion-item class="ion-margin-top ion-margin-bottom" *ngIf="loadedProduct.type === 'gpu'">
+      Brand: {{loadedProduct.brand}}<br>
+    </ion-item>
+  </ion-list>
+</ion-content>

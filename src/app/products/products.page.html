@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button slot="start" fill="">
+      <ion-menu-button menu="m1"></ion-menu-button>
+    </ion-button>
+    <ion-title>Home</ion-title>
+    <ion-button slot="primary" fill="" (click)="changeToGrid()" id="btnGrid">
+      <ion-icon name="grid-outline"></ion-icon>
+    </ion-button>
+    <ion-button slot="primary" fill="" style="display: none" (click)="changeToList()" id="btnList">
+      <ion-icon name="list-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content id="contentGrid" style="display: none">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let product of products">
+        <ion-card [routerLink]="['./', 'detail', product.id]">
+          <ion-card-header>
+              <img src="{{product.imageUrl}}">
+            <ion-card-title></ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-text style="font-weight: bold">{{product.model}}</ion-text><br/><br/>
+            Rp. {{product.price.toLocaleString('id-ID')}}<br/><br/>
+            Stock: {{product.stock.toLocaleString('id-ID')}}
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-content id="contentList">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" *ngFor="let product of products">
+        <ion-item [routerLink]="['./', 'detail', product.id]">
+            <ion-thumbnail class="ion-margin">
+              <img src="{{product.imageUrl}}">
+            </ion-thumbnail>
+          {{product.model}}<br>
+          Rp. {{product.price}}<br>
+          Stock: {{product.stock}}
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
