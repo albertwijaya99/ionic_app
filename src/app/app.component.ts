@@ -24,4 +24,7 @@ export class AppComponent {
       this.splashScreen.hide();
     });
   }
+  exitApp() {
+    (navigator as any).app.exitApp();
+  }
 }
