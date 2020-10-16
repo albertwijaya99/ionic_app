@@ -140,6 +140,7 @@ export class ProductsService {
       this.gpus = this.gpus.filter(product => {
           return product.id !== id;
       });
+      this.refreshProduct();
   }
   addCpu(
       id: string,
